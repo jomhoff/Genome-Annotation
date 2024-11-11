@@ -4,9 +4,10 @@ Earlgrey is a wrapper that runs Repeat Modeler, Repeat Masker, and then uses a B
 ```
 #!/bin/sh
 #SBATCH --job-name earlgrey
-#SBATCH --nodes=2
-#SBATCH --mem=30gb
-#SBATCH --time=80:00:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=48
+#SBATCH --mem=300gb
+#SBATCH --time=200:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jhoffman1@amnh.org
 
@@ -17,6 +18,6 @@ mamba activate earlgrey
 
 genome="/home/jhoffman1/mendel-nas1/fasciatus_genome/KY_LR/assembly/hoff_pfas_total.fasta"
 
-earlGrey -g $genome -s plestiodonFasciatus_2 -t 48 -d yes -o ./earlgreyOutputs
+earlGrey -g $genome -s plestiodonFasciatus_2 -t $SLURM_NTASKS_PER_NODE -d yes -o ./earlgreyOutputs
 ```
 
