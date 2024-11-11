@@ -1,7 +1,7 @@
-## **[Funannotate](https://funannotate.readthedocs.io/en/latest/index.html)
+# **[Funannotate](https://funannotate.readthedocs.io/en/latest/index.html)**
 Funannotate is a software package that developed for functional annotation of genomes from multiple lines of evidence. 
 
-# Train Step
+## Train Step
 Since we have a softmasked genome from Earlgrey, we start the funannotate pipeline at the train step. Here, I initiate the step with untrimmed RNA-seq data--trinity output fastas can also be used. PASA is then used to align the transcriptomes to the genomes and find putative gene-regions.
 
 ```
@@ -30,7 +30,7 @@ funannotate train -i plestiodonFasciatus_2.softmasked.fasta -o fun_train_out \
     --max_intronlen 6000 --stranded RF
 ```
 
-# Predict Step
+## Predict Step
 The prediction step takes advantage of GENEMARK-ES to predict genes from functional gene databases and the output from the predict step.
 
 ```
