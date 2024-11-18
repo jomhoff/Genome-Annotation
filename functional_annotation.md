@@ -30,7 +30,7 @@ funannotate train -i plestiodonFasciatus_2.softmasked.fasta -o fun_train_out \
 ```
 
 ## Predict Step
-The prediction step takes advantage of GENEMARK-ES to predict genes from functional gene databases and the output from the predict step.
+The prediction step takes advantage of GENEMARK-ES to predict genes from functional gene databases and the output from the predict step. You have to install GeneMark seperately; you can do so [here](https://topaz.gatech.edu/GeneMark)
 ```
 #!/bin/sh
 #SBATCH --job-name funpredict
