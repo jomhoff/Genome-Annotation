@@ -102,14 +102,14 @@ funannotate fix -i fun_train_out/update_results/Plestiodon_fasciatus.gbk -t fun_
 ```
 
 ## InterProScan 
-Next, I used InterProScan to run the predicted genes against the InterPro database for gene families. InterProScan needs to be downloaded indepentely, which can be done by following the intructions [here](https://interproscan-docs.readthedocs.io/en/latest/InstallationRequirements.html)
+Next, I used InterProScan to run the predicted genes against the InterPro database for gene families. InterProScan needs to be downloaded indepentely, which can be done by following the intructions [here](https://interproscan-docs.readthedocs.io/en/latest/InstallationRequirements.html). To run on a cluster, you have to edit the interproscan.properties file to match the system you're running on. For slurm, see mine [here]()
 ```
 #!/bin/sh
 #SBATCH --job-name funIntprscn
 #SBATCH --nodes=1
-#SBATCH --tasks-per-node=40
-#SBATCH --mem=300gb
-#SBATCH --time=100:00:00
+#SBATCH --tasks-per-node=10
+#SBATCH --mem=50gb
+#SBATCH --time=50:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jhoffman1@amnh.org
 
@@ -117,7 +117,7 @@ mamba activate funannotate
 
 cd /home/jhoffman1/mendel-nas1/fasciatus_genome/funannotate
 
-funannotate iprscan -i fun_train_out --cpus 40 -m local --iprscan_path my_interproscan/interproscan-5.71-102.0/interproscan.sh
+funannotate iprscan -i fun_train_out --cpus $SLURM_NTASKS_PER_NODE -m local --iprscan_path /home/jhoffman1/mendel-nas1/fasciatus_genome/funannotate/my_interproscan/interproscan-5.71-102.0/interproscan.sh
 ```
 
 ## Annotate
