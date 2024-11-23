@@ -136,6 +136,9 @@ mamba activate funannotate
 
 cd /home/jhoffman1/mendel-nas1/fasciatus_genome/funannotate
 
+export FUNANNOTATE_DB=/mendel-nas1/jhoffman1/fasciatus_genome/funannotate/funannotate_db
+export GENEMARK_PATH=/home/jhoffman1/mendel-nas1/fasciatus_genome/funannotate/gmes_linux_64_4
+
 funannotate annotate -i fun_train_out --busco_db tetrapoda --cpus $SLURM_NTASKS_PER_NODE
 ```
 
