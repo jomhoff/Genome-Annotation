@@ -102,7 +102,7 @@ funannotate fix -i fun_train_out/update_results/Plestiodon_fasciatus.gbk -t fun_
 ```
 
 ## InterProScan 
-Next, I used InterProScan to run the predicted genes against the InterPro database for gene families. InterProScan needs to be downloaded indepentely, which can be done by following the intructions [here](https://interproscan-docs.readthedocs.io/en/latest/InstallationRequirements.html). To run on a cluster, you have to edit the interproscan.properties file to match the system you're running on. For slurm, see mine [here]()
+Next, I used InterProScan to run the predicted genes against the InterPro database for gene families. InterProScan needs to be downloaded indepentely, which can be done by following the intructions [here](https://interproscan-docs.readthedocs.io/en/latest/InstallationRequirements.html). To run on a cluster, you have to edit the interproscan.properties file to match the system you're running on. For slurm, see mine [here](https://github.com/jomhoff/Genome-Annotation/blob/main/interproscan.properties)
 ```
 #!/bin/sh
 #SBATCH --job-name funIntprscn
@@ -127,8 +127,8 @@ This is the final step of the annotation pipeline--it assigns functional annotat
 #SBATCH --job-name funAnnotate
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=40
-#SBATCH --mem=300gb
-#SBATCH --time=100:00:00
+#SBATCH --mem=100gb
+#SBATCH --time=80:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jhoffman1@amnh.org
 
@@ -136,6 +136,6 @@ mamba activate funannotate
 
 cd /home/jhoffman1/mendel-nas1/fasciatus_genome/funannotate
 
-funannotate annotate -i fun_train_out --busco_db tetrapoda --cpus 40
+funannotate annotate -i fun_train_out --busco_db tetrapoda --cpus $SLURM_NTASKS_PER_NODE
 ```
 
