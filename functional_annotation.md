@@ -8,9 +8,9 @@ Since we have a softmasked genome from Earlgrey, we start the funannotate pipeli
 #!/bin/sh
 #SBATCH --job-name funtrain
 #SBATCH --nodes=1
-#SBATCH --tasks-per-node=48
+#SBATCH --tasks-per-node=10
 #SBATCH --mem=100gb
-#SBATCH --time=50:00:00
+#SBATCH --time=100:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=jhoffman1@amnh.org
 
@@ -26,7 +26,8 @@ funannotate train -i plestiodonFasciatus_2.softmasked.fasta -o fun_train_out \
     --left Plestiodon-fasciatus-AMNHFS20591-heart_R1_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-kidney_R1_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-liver_R1_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-lung_R1_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-muscle_R1_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-skin_R1_001.fastq.gz \
     --right Plestiodon-fasciatus-AMNHFS20591-heart_R2_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-kidney_R2_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-liver_R2_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-lung_R2_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-muscle_R2_001.fastq.gz Plestiodon-fasciatus-AMNHFS20591-skin_R2_001.fastq.gz \
     --species "Plestiodon fasciatus" \
-    --max_intronlen 6000 --stranded RF
+    --max_intronlen 6000 --stranded RF \
+    --cpus $SLURM_NTASKS_PER_NODE
 ```
 
 ## Predict Step
